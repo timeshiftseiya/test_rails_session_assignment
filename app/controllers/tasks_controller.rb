@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
 
   def index
-    @tasks = Task.all
+    @tasks = Task.where(user: current_user)
   end
 
   def new
@@ -44,6 +44,6 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:title, :content)
+      params.require(:task).permit(:title, :content).merge(user: current_user)
     end
 end
