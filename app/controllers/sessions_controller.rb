@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
         user = User.find_by(email: params[:session][:email].downcase)
         if user&.authenticate(params[:session][:password])
             log_in(user)
-            redirect_to user_path(user.id), notice: t('.success')
+            redirect_to tasks_path, notice: t('.success')
         else
             flash.now[:notice] = t('.fail')
             render :new

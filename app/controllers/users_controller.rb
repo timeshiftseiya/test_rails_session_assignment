@@ -15,7 +15,7 @@ class UsersController < ApplicationController
         if @user.save
             log_in(@user)
             # エラーなく保存できた場合はDB更新の上、タスク一覧画面（tasks#index）へ遷移
-            redirect_to user_path(@user), notice: t('.created')
+            redirect_to tasks_path, notice: t('.created')
         else
             # エラーがあり保存できなかった場合は新規作成画面に戻る（※ただしGETアクションをやり直さないのでフォームに入力した文字はそのまま）
             render :new
